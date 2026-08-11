@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Footer, Header, PrimaryButton } from "./site-components";
+import { Footer, Header, PopularPages, PrimaryButton } from "./site-components";
 
 export const metadata: Metadata = {
   title: "AURUM — Web3-кошелёк, USDT и виртуальная карта",
@@ -164,6 +164,8 @@ export default function Home() {
           </div>
           <div className="seo-copy"><h3>Виртуальная карта иностранного банка для россиян</h3><p>Оформите виртуальную карту онлайн, пополняйте её рублями или через USDT и используйте для оплаты зарубежных сервисов. Выпуск, управление лимитами и история операций доступны в личном кабинете AURUM.</p><a className="text-link" href="/virtual-card">Подробнее о виртуальной карте <span>↗</span></a></div>
         </section>
+
+        <PopularPages />
 
         <section className="faq section-shell" id="faq">
           <div className="faq-title"><div className="eyebrow"><span /> FAQ</div><h2>Вопросы,<br />которые стоит<br /><em>задать</em></h2><p>Коротко и честно о кошельке, USDT, картах и безопасности.</p><a href="/faq" className="text-link">Все вопросы <span>↗</span></a></div>
