@@ -70,27 +70,10 @@ export default function Home() {
           <div className="hero-visual" aria-label="Интерфейс кошелька AURUM">
             <div className="orbit orbit-one" />
             <div className="orbit orbit-two" />
+            <img className="hero-shadow-image" src="/source/hero-shadow.png" alt="" aria-hidden="true" />
             <div className="float-pill pill-rub">₽ <span>RUB</span></div>
             <div className="float-pill pill-usdt">₮ <span>USDT</span></div>
-            <div className="phone">
-              <div className="phone-top"><span>9:41</span><b>AURUM</b><i>●●</i></div>
-              <div className="balance-label">Общий баланс</div>
-              <div className="balance">600 468<small>,98 ₽</small></div>
-              <div className="balance-note"><span>↑ 5,4%</span> за месяц</div>
-              <div className="quick-actions">
-                <div><b>＋</b><span>Пополнить</span></div>
-                <div><b>⇄</b><span>Обменять</span></div>
-                <div><b>↗</b><span>Вывести</span></div>
-              </div>
-              <div className="mini-card">
-                <div><span>AURUM</span><strong>VISA</strong></div>
-                <p>•••• 4821</p>
-                <small>VALID THRU&nbsp;&nbsp; 09/29</small>
-              </div>
-              <div className="tx-head"><b>Последние операции</b><span>Все</span></div>
-              <div className="tx"><i className="tx-green">N</i><p><b>Netflix</b><small>Подписка</small></p><strong>− 12,99 $</strong></div>
-              <div className="tx"><i className="tx-black">₮</i><p><b>Покупка USDT</b><small>Сегодня, 10:42</small></p><strong className="positive">+ 500 ₮</strong></div>
-            </div>
+            <img className="hero-phone-image" src="/source/hero-phone.png" alt="Мобильный интерфейс кошелька AURUM с балансом и историей операций" fetchPriority="high" />
             <div className="rate-card"><span>Курс сегодня</span><strong>1 USDT = 92,46 ₽</strong><small>Итог виден до обмена</small></div>
           </div>
         </section>
@@ -116,7 +99,7 @@ export default function Home() {
             </article>
             <article className="bento bento-world">
               <div className="card-index">02</div><h3>Карта для<br />оплаты за рубежом</h3><p>Подписки, покупки, поездки и зарубежные сервисы — с отдельными реквизитами.</p>
-              <div className="world-orb"><span>NY</span><span>DXB</span><span>EU</span><b>✦</b></div>
+              <img className="bento-card-image" src="/source/virtual-cards.png" alt="Виртуальные карты AURUM в рублях и долларах" loading="lazy" />
             </article>
             <article className="bento bento-safe">
               <div className="card-index">03</div><h3>Без случайных<br />P2P-переводов</h3><p>Пополнение только со своих счетов — никаких переводов от незнакомцев.</p>
@@ -124,6 +107,7 @@ export default function Home() {
             </article>
             <article className="bento bento-telegram">
               <div className="card-index">04</div><h3>Всегда под рукой</h3><p>Запускайте кошелёк в Telegram и управляйте балансом без установки лишних приложений.</p>
+              <img className="bento-telegram-image" src="/source/telegram-app.png" alt="AURUM в Telegram — переводы и пополнение" loading="lazy" />
               <a href="https://t.me/aurumwalletbot" target="_blank" rel="noreferrer">Открыть Telegram <span>↗</span></a>
             </article>
           </div>
@@ -159,6 +143,10 @@ export default function Home() {
 
         <section className="use-cases section-shell" id="cards">
           <div className="section-heading"><div><div className="eyebrow"><span /> Виртуальная карта</div><h2>Платите там,<br />где вам нужно</h2></div><p>Отдельная карта для зарубежных подписок и покупок помогает не светить реквизиты основной карты.</p></div>
+          <div className="wallet-showcase">
+            <div><span>Оригинальный интерфейс AURUM</span><h3>Баланс, платежи и история — в одном экране</h3><p>Следите за движением средств и управляйте картами из личного кабинета.</p></div>
+            <img src="/source/wallet-ui.png" alt="Экран кошелька AURUM с балансом и историей операций" loading="lazy" />
+          </div>
           <div className="logo-cloud" aria-label="Примеры категорий оплаты">
             <span>NETFLIX</span><span>SPOTIFY</span><span>STEAM</span><span>APP STORE</span><span>AMAZON</span><span>TRAVEL</span><span>AI TOOLS</span><span>CLOUD</span>
           </div>
