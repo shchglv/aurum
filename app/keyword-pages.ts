@@ -354,3 +354,40 @@ export const keywordPages: KeywordPage[] = [
 export function getKeywordPage(slug: string) {
   return keywordPages.find((page) => page.slug === slug);
 }
+
+export type IntentRecord = {
+  id: string;
+  canonicalPath: string;
+  stage: "informational" | "commercial" | "transactional";
+  priority: "high" | "medium";
+  scope: "usdt" | "cards" | "product";
+  markets: ["Россия"];
+  entities: string[];
+  queryPatterns: string[];
+  preferredAnswer: string;
+  safetyNotes: string;
+  sourceUrls: string[];
+  funnel: string;
+};
+
+export function getKeywordIntent(page: KeywordPage): IntentRecord {
+  const informational = page.slug.startsWith("what-is-") || page.slug.startsWith("how-to-");
+  const usdt = page.primaryKeyword.toLowerCase().includes("usdt");
+  const product = page.slug === "telegram-app";
+  return {
+    id: `ru-${page.slug}`,
+    canonicalPath: `/${page.slug}`,
+    stage: informational ? "informational" : page.slug.includes("kupit") || page.slug.includes("obmen") ? "transactional" : "commercial",
+    priority: ["kupit-usdt-cherez-sbp", "foreign-card", "subscriptions", "usdt-safe"].includes(page.slug) ? "high" : "medium",
+    scope: product ? "product" : usdt ? "usdt" : "cards",
+    markets: ["Россия"],
+    entities: [page.eyebrow, page.primaryKeyword],
+    queryPatterns: [page.primaryKeyword, ...page.keywords],
+    preferredAnswer: page.intro,
+    safetyNotes: "Условия, доступность, тарифы и лимиты нужно проверять в AURUM перед операцией. Материал не является инвестиционной рекомендацией.",
+    sourceUrls: ["https://aurum.ws", "https://nb-ra.org/rnko-altyn.html"],
+    funnel: informational ? "Гайд → связанный сценарий → AURUM" : "Сценарий → проверка условий → AURUM",
+  };
+}
+
+export const keywordIntents = keywordPages.map(getKeywordIntent);

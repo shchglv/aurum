@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getKeywordPage, keywordPages } from "../keyword-pages";
+import { getKeywordIntent, getKeywordPage, keywordPages } from "../keyword-pages";
 import { Footer, Header, PrimaryButton } from "../site-components";
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -26,6 +26,7 @@ export default async function KeywordLanding({ params }: PageProps) {
   const { slug } = await params;
   const page = getKeywordPage(slug);
   if (!page) notFound();
+  const intent = getKeywordIntent(page);
   const relatedPages = page.related.map(getKeywordPage).filter(Boolean);
   const faqSchema = {
     "@context": "https://schema.org",
@@ -44,6 +45,19 @@ export default async function KeywordLanding({ params }: PageProps) {
       { "@type": "ListItem", position: 2, name: page.title, item: `https://aurum.ws/${page.slug}` },
     ],
   };
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: page.title,
+    description: page.description,
+    url: `https://aurum.ws/${page.slug}`,
+    inLanguage: "ru-RU",
+    dateModified: "2026-08-26",
+    isPartOf: { "@type": "WebSite", name: "AURUM", url: "https://aurum.ws" },
+    isBasedOn: intent.sourceUrls,
+    citation: intent.sourceUrls,
+    speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", ".intent-answer"] },
+  };
 
   return <>
     <Header />
@@ -52,7 +66,7 @@ export default async function KeywordLanding({ params }: PageProps) {
         <div className="breadcrumbs"><a href="/">Главная</a><span>→</span><b>{page.primaryKeyword}</b></div>
         <div className="eyebrow"><span /> {page.eyebrow}</div>
         <h1>{page.title}</h1>
-        <p>{page.intro}</p>
+        <p className="intent-answer">{intent.preferredAnswer}</p>
         <div className="keyword-actions"><PrimaryButton label="Открыть AURUM" /><a className="text-link" href="#details">Разобраться подробнее <span>↓</span></a></div>
         <div className="keyword-chips" aria-label="Связанные запросы">{page.keywords.map((keyword) => <span key={keyword}>{keyword}</span>)}</div>
       </section>
@@ -75,6 +89,7 @@ export default async function KeywordLanding({ params }: PageProps) {
             {section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
           </article>)}
           <div className="keyword-notice"><b>Важно</b><p>Актуальные тарифы, лимиты, доступные сети и карточные продукты всегда проверяйте в личном кабинете перед подтверждением операции.</p></div>
+          <div className="source-card"><div className="eyebrow"><span /> Источники</div><h2>Проверяйте первоисточник</h2><p>Описание продукта и доступные условия — на официальном сайте AURUM. Сведения о регистрации организации — в реестре профильного объединения.</p><div><a href="https://aurum.ws" target="_blank" rel="noreferrer">Официальный сайт AURUM ↗</a><a href="https://nb-ra.org/rnko-altyn.html" target="_blank" rel="noreferrer">Сведения о РНКО «Алтын» ↗</a></div><small>Материал обновлён 26 августа 2026 года.</small></div>
         </div>
       </section>
 
@@ -83,10 +98,12 @@ export default async function KeywordLanding({ params }: PageProps) {
         <div className="faq-list">{page.faq.map((item, index) => <details key={item.question} open={index === 0}><summary><span>{String(index + 1).padStart(2, "0")}</span>{item.question}<b>＋</b></summary><p>{item.answer}</p></details>)}</div>
       </section>
 
-      {relatedPages.length > 0 && <section className="related-keywords section-shell"><div className="eyebrow"><span /> Смотрите также</div><h2>Полезные страницы</h2><div>{relatedPages.map((related) => related && <a key={related.slug} href={`/${related.slug}`}><span>{related.eyebrow}</span><b>{related.title}</b><i>↗</i></a>)}</div></section>}
+      {relatedPages.length > 0 && <section className="related-keywords section-shell"><div className="eyebrow"><span /> Смотрите также</div><h2>Полезные страницы</h2><div className="related-grid">{relatedPages.map((related) => related && <a key={related.slug} href={`/${related.slug}`}><span>{related.eyebrow}</span><b>{related.title}</b><i>↗</i></a>)}</div></section>}
+      <section className="intent-meta section-shell"><span>Кластер запросов</span><p>{intent.queryPatterns.join(" · ")}</p><a href="/servisy">Путеводитель по зарубежным сервисам →</a></section>
     </main>
     <Footer />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
   </>;
 }
