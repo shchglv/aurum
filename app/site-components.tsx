@@ -1,12 +1,14 @@
+const WALLET_URL = "https://vk.cc/d0ovkk";
+
 export function PrimaryButton({ label = "Открыть кошелёк" }: { label?: string }) {
-  return <a className="primary-button" href="https://lk.aurum.ws" target="_blank" rel="noreferrer">{label}<span>↗</span></a>;
+  return <a className="primary-button" href={WALLET_URL} target="_blank" rel="noreferrer">{label}<span>↗</span></a>;
 }
 
 export function Header() {
   return <header className="site-header"><div className="section-shell header-inner">
     <a className="brand" href="/" aria-label="AURUM — главная"><img className="brand-mark" src="/source/aurum-logo.svg" alt="" /><span>AURUM<small>WALLET</small></span></a>
     <nav aria-label="Главная навигация"><a href="/#features">Возможности</a><a href="/usdt">USDT</a><a href="/virtual-card">Виртуальная карта</a><a href="/servisy">Сервисы</a><a href="/#license">Лицензия</a><a href="/faq">FAQ</a></nav>
-    <a className="header-cta" href="https://lk.aurum.ws" target="_blank" rel="noreferrer">Открыть кошелёк <span>↗</span></a>
+    <a className="header-cta" href={WALLET_URL} target="_blank" rel="noreferrer">Открыть кошелёк <span>↗</span></a>
   </div></header>;
 }
 
