@@ -1,0 +1,23 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "AURUM public content index",
+    "version": "2026-08-26",
+    "description": "Machine-readable discovery for AURUM Russian-language public guidance. This is a content index, not a transactional API."
+  },
+  "servers": [{ "url": "https://aurum.ws" }],
+  "paths": {
+    "/.well-known/search-intents.json": {
+      "get": {
+        "summary": "Get the Russian search-intent map",
+        "responses": { "200": { "description": "Canonical intent records" } }
+      }
+    },
+    "/llms.txt": {
+      "get": {
+        "summary": "Get AI-readable site guidance",
+        "responses": { "200": { "description": "Plain-text site guidance" } }
+      }
+    }
+  }
+}
