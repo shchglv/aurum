@@ -1,0 +1,17 @@
+{
+  "name": "AURUM Russian payment guidance",
+  "version": "2026-08-26",
+  "language": "ru",
+  "capabilities": [
+    "explain USDT purchase and exchange scenarios",
+    "explain virtual card selection and safety checks",
+    "route users to canonical service-payment guides"
+  ],
+  "constraints": [
+    "No payment acceptance guarantees",
+    "No investment recommendations",
+    "Current conditions must be checked in AURUM and official service documentation"
+  ],
+  "intents": "https://aurum.ws/.well-known/search-intents.json",
+  "authority": "https://aurum.ws/auth.md"
+}
