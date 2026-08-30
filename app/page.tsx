@@ -49,6 +49,19 @@ export default function Home() {
     <>
       <Header />
       <main>
+        <div className="ticker section-shell" aria-label="Преимущества AURUM">
+          <div className="ticker-track">
+            {[0, 1].map((copy) => (
+              <div className="ticker-group" key={copy} aria-hidden={copy === 1}>
+                <span>Покупка USDT за 30 секунд</span>
+                <span>Виртуальная карта для зарубежных сервисов</span>
+                <span>Пополнение через СБП — 0%</span>
+                <span>Без случайных P2P-переводов</span>
+                <span>Работаем 24/7</span>
+              </div>
+            ))}
+          </div>
+        </div>
         <section className="hero section-shell">
           <div className="hero-copy">
             <div className="eyebrow"><span /> Финансы без границ</div>
