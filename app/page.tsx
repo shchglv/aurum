@@ -126,6 +126,22 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="transfer-spotlight section-shell" id="transfers">
+          <div className="transfer-copy">
+            <div className="eyebrow"><span /> Международные переводы</div>
+            <h2>На карту<br /><em>зарубежного банка</em></h2>
+            <p>Отправляйте деньги на доступные карты зарубежных банков с понятным расчётом валюты, комиссии и суммы к зачислению.</p>
+            <div className="transfer-actions"><a className="primary-button" href="/perevody">Разобраться в переводах <span>↗</span></a><a className="text-link" href="/perevody-na-zarubezhnuyu-kartu">Выбрать сценарий <span>↗</span></a></div>
+          </div>
+          <div className="transfer-flow" aria-label="Сценарий перевода на зарубежную карту">
+            <div className="transfer-node"><span>01</span><b>Ваш баланс</b><small>RUB / USDT</small></div>
+            <div className="transfer-arrow" aria-hidden="true">→</div>
+            <div className="transfer-node transfer-node-accent"><span>02</span><b>Проверка</b><small>Курс · комиссия · лимит</small></div>
+            <div className="transfer-arrow" aria-hidden="true">→</div>
+            <div className="transfer-node transfer-node-dark"><span>03</span><b>Карта получателя</b><small>Зарубежный банк</small></div>
+          </div>
+        </section>
+
         <section className="how section-shell" id="how">
           <div className="how-copy"><div className="eyebrow light"><span /> Старт</div><h2>От регистрации<br />до оплаты —<br /><em>три шага</em></h2><p>Никаких визитов в офис и бумажных заявлений. Всё происходит онлайн.</p><PrimaryButton label="Создать кошелёк" /></div>
           <div className="steps">

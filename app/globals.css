@@ -199,3 +199,46 @@ nav { gap: 24px; font-size: 12px; }
 @media (prefers-reduced-motion: reduce) {
   .ticker-track, .bento { animation: none; transition: none; }
 }
+
+/* International card transfer spotlight */
+.transfer-spotlight {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding: 62px clamp(28px, 6vw, 86px);
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  gap: 60px;
+  align-items: center;
+  border-radius: 30px;
+  background: #fffdf5;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+.transfer-copy h2 { margin: 22px 0 20px; font-size: clamp(48px, 5vw, 72px); line-height: .92; letter-spacing: -.07em; }
+.transfer-copy h2 em { color: #5d760b; }
+.transfer-copy p { max-width: 470px; margin: 0; color: var(--muted); font-size: 15px; line-height: 1.65; }
+.transfer-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 24px; margin-top: 30px; }
+.transfer-actions .primary-button { background: var(--ink); color: #fff; }
+.transfer-actions .primary-button span { background: var(--green); color: var(--ink); }
+.transfer-flow { min-height: 260px; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 24px; border-radius: 22px; background: #eef1ed; }
+.transfer-node { min-width: 132px; min-height: 154px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #d8dddc; border-radius: 18px; background: #fff; box-shadow: 0 12px 28px rgba(15, 24, 21, .07); }
+.transfer-node span { color: #89908b; font-size: 9px; font-weight: 800; letter-spacing: .08em; }
+.transfer-node b { font-size: 16px; line-height: 1.05; letter-spacing: -.04em; }
+.transfer-node small { color: #7a827d; font-size: 9px; line-height: 1.35; }
+.transfer-node-accent { border-color: var(--green); background: var(--green); }
+.transfer-node-accent span, .transfer-node-accent small { color: #52640f; }
+.transfer-node-dark { border-color: #252b27; background: #171918; color: #fff; }
+.transfer-node-dark span, .transfer-node-dark small { color: #aab4ac; }
+.transfer-arrow { color: #87918b; font-size: 24px; }
+
+@media (max-width: 900px) {
+  .transfer-spotlight { grid-template-columns: 1fr; gap: 36px; padding: 48px 34px; }
+}
+@media (max-width: 560px) {
+  .transfer-spotlight { padding: 42px 22px; border-radius: 24px; }
+  .transfer-copy h2 { font-size: 47px; }
+  .transfer-actions { align-items: flex-start; flex-direction: column; gap: 20px; }
+  .transfer-flow { min-height: 0; flex-direction: column; padding: 20px 14px; }
+  .transfer-node { width: 100%; min-height: 116px; }
+  .transfer-arrow { transform: rotate(90deg); }
+}
