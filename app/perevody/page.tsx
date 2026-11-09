@@ -35,6 +35,10 @@ export default function TransfersHub() {
       })),
     },
   };
+  const breadcrumb = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+    { "@type": "ListItem", position: 1, name: "AURUM", item: "https://aurum.ws" },
+    { "@type": "ListItem", position: 2, name: "Переводы", item: "https://aurum.ws/perevody" },
+  ] };
 
   return <>
     <Header />
@@ -73,5 +77,6 @@ export default function TransfersHub() {
     </main>
     <Footer />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collection) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
   </>;
 }

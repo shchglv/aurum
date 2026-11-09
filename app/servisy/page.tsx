@@ -25,6 +25,10 @@ export default function ServicesHub() {
       })),
     },
   };
+  const breadcrumb = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+    { "@type": "ListItem", position: 1, name: "AURUM", item: "https://aurum.ws" },
+    { "@type": "ListItem", position: 2, name: "Сервисы", item: "https://aurum.ws/servisy" },
+  ] };
 
   return <>
     <Header />
@@ -55,5 +59,6 @@ export default function ServicesHub() {
     </main>
     <Footer />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemList) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
   </>;
 }

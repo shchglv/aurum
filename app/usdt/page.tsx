@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { SeoPage } from "../site-components";
 
-export const metadata: Metadata = { title: "Купить USDT за рубли онлайн — AURUM", description: "Покупка USDT за рубли через СБП без P2P-переводов от незнакомцев. Прозрачный курс и быстрый вывод USDT." };
+export const metadata: Metadata = { title: "Купить USDT за рубли онлайн — AURUM", description: "Покупка USDT за рубли через СБП без P2P-переводов от незнакомцев. Прозрачный курс и быстрый вывод USDT.", alternates: { canonical: "/usdt" }, openGraph: { title: "Купить USDT за рубли онлайн — AURUM", description: "Покупка USDT через СБП со своего счёта и обмен внутри кошелька.", type: "website", url: "https://aurum.ws/usdt" } };
 
 export default function UsdtPage() {
   return <SeoPage eyebrow="RUB ↔ USDT" title="Купить USDT за рубли — без случайных P2P-переводов" lead="Пополняйте AURUM со своего банковского счёта, обменивайте рубли на USDT по курсу, который виден заранее, и выводите активы на свой кошелёк.">

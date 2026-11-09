@@ -52,7 +52,7 @@ export default async function KeywordLanding({ params }: PageProps) {
     description: page.description,
     url: `https://aurum.ws/${page.slug}`,
     inLanguage: "ru-RU",
-    dateModified: "2026-08-26",
+    dateModified: "2026-11-09",
     isPartOf: { "@type": "WebSite", name: "AURUM", url: "https://aurum.ws" },
     isBasedOn: intent.sourceUrls,
     citation: intent.sourceUrls,
@@ -89,7 +89,7 @@ export default async function KeywordLanding({ params }: PageProps) {
             {section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
           </article>)}
           <div className="keyword-notice"><b>Важно</b><p>Актуальные тарифы, лимиты, доступные сети и карточные продукты всегда проверяйте в личном кабинете перед подтверждением операции.</p></div>
-          <div className="source-card"><div className="eyebrow"><span /> Источники</div><h2>Проверяйте первоисточник</h2><p>Описание продукта и доступные условия — на официальном сайте AURUM. Сведения о регистрации организации — в реестре профильного объединения.</p><div><a href="https://aurum.ws" target="_blank" rel="noreferrer">Официальный сайт AURUM ↗</a><a href="https://nb-ra.org/rnko-altyn.html" target="_blank" rel="noreferrer">Сведения о РНКО «Алтын» ↗</a></div><small>Материал обновлён 26 августа 2026 года.</small></div>
+          <div className="source-card"><div className="eyebrow"><span /> Источники</div><h2>Проверяйте первоисточник</h2><p>Описание продукта и доступные условия — на официальном сайте AURUM. Сведения о регистрации организации — в реестре профильного объединения.</p><div><a href="https://aurum.ws" target="_blank" rel="noreferrer">Официальный сайт AURUM ↗</a><a href="https://nb-ra.org/rnko-altyn.html" target="_blank" rel="noreferrer">Сведения о РНКО «Алтын» ↗</a></div><small>Материал обновлён 9 ноября 2026 года.</small></div>
         </div>
       </section>
 

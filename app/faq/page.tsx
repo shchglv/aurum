@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Footer, Header } from "../site-components";
 
-export const metadata: Metadata = { title: "FAQ об AURUM, USDT и виртуальных картах", description: "Ответы на частые вопросы о кошельке AURUM: покупка USDT, виртуальные карты, пополнение, комиссии, проверка личности и безопасность." };
+export const metadata: Metadata = { title: "FAQ об AURUM, USDT и виртуальных картах", description: "Ответы на частые вопросы о кошельке AURUM: покупка USDT, виртуальные карты, пополнение, комиссии, проверка личности и безопасность.", alternates: { canonical: "/faq" }, openGraph: { title: "FAQ об AURUM, USDT и виртуальных картах", description: "Ответы о покупке USDT, виртуальных картах, переводах, комиссиях и безопасности.", type: "website", url: "https://aurum.ws/faq" } };
 
 const items = [
   ["Что можно делать в AURUM?", "Хранить рубли и USDT, обменивать их, пополнять и выводить средства, выпускать виртуальную карту и оплачивать покупки."],
@@ -15,4 +15,7 @@ const items = [
   ["На какой лицензии работает сервис?", "AURUM базируется на РНКО «Алтын» с лицензией Национального банка Республики Абхазии №005 от 15.06.2012."],
 ];
 
-export default function FaqPage() { return <><Header /><main className="faq-page section-shell"><div className="eyebrow"><span /> База знаний</div><h1>Ответы на частые вопросы об AURUM</h1><p className="faq-intro">Всё важное о покупке USDT, виртуальной карте, пополнении и безопасности.</p><div className="faq-list wide">{items.map((item, i) => <details key={item[0]} open={i === 0}><summary><span>{String(i + 1).padStart(2, "0")}</span>{item[0]}<b>＋</b></summary><p>{item[1]}</p></details>)}</div></main><Footer /></>; }
+export default function FaqPage() {
+  const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: items.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) };
+  return <><Header /><main className="faq-page section-shell"><div className="eyebrow"><span /> База знаний</div><h1>Ответы на частые вопросы об AURUM</h1><p className="faq-intro">Всё важное о покупке USDT, виртуальной карте, пополнении и безопасности.</p><div className="faq-list wide">{items.map((item, i) => <details key={item[0]} open={i === 0}><summary><span>{String(i + 1).padStart(2, "0")}</span>{item[0]}<b>＋</b></summary><p>{item[1]}</p></details>)}</div></main><Footer /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} /></>;
+}

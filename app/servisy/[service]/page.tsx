@@ -29,7 +29,7 @@ export default async function ServicePage({ params }: PageProps) {
   const schemas = [
     {
       "@context": "https://schema.org", "@type": "WebPage", name: service.title, description: service.description,
-      url: canonical, inLanguage: "ru-RU", dateModified: "2026-08-26", isPartOf: { "@type": "WebSite", name: "AURUM", url: "https://aurum.ws" },
+      url: canonical, inLanguage: "ru-RU", dateModified: "2026-11-09", isPartOf: { "@type": "WebSite", name: "AURUM", url: "https://aurum.ws" },
       citation: service.officialSource.url, speakable: { "@type": "SpeakableSpecification", cssSelector: [".answer-box p", "h1"] },
     },
     {
@@ -58,7 +58,7 @@ export default async function ServicePage({ params }: PageProps) {
 
       <section className="answer-section section-shell" id="answer">
         <div><div className="eyebrow"><span /> Короткий ответ</div><h2>Что нужно знать</h2></div>
-        <div className="answer-box"><p>{service.shortAnswer}</p><a href={service.officialSource.url} target="_blank" rel="noreferrer">Официальный источник: {service.officialSource.label} <span>↗</span></a><small>Проверено и обновлено: 26 августа 2026 года</small></div>
+        <div className="answer-box"><p>{service.shortAnswer}</p><a href={service.officialSource.url} target="_blank" rel="noreferrer">Официальный источник: {service.officialSource.label} <span>↗</span></a><small>Проверено и обновлено: 9 ноября 2026 года</small></div>
       </section>
 
       <section className="service-checklist section-shell">

@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "AURUM — Web3-кошелёк, USDT и виртуальная карта",
   description:
     "Покупайте USDT за рубли, выпускайте виртуальные карты и оплачивайте покупки в России и за рубежом в одном лицензированном сервисе.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "AURUM — Web3-кошелёк, USDT и виртуальная карта",
+    description: "Покупка USDT за рубли, виртуальные карты и переводы в одном сервисе.",
+    type: "website",
+    url: "https://aurum.ws",
+  },
 };
 
 const faq = [

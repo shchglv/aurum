@@ -18,7 +18,7 @@ export async function GET() {
   }));
 
   return Response.json({
-    version: "2026-08-26",
+    version: "2026-11-09",
     language: "ru",
     market: "Россия",
     canonicalPolicy: "Один кластер близких запросов — одна каноническая страница.",

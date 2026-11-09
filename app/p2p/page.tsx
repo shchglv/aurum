@@ -36,6 +36,10 @@ export default function P2PHub() {
       })),
     },
   };
+  const breadcrumb = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+    { "@type": "ListItem", position: 1, name: "AURUM", item: "https://aurum.ws" },
+    { "@type": "ListItem", position: 2, name: "P2P и USDT", item: "https://aurum.ws/p2p" },
+  ] };
 
   return <>
     <Header />
@@ -74,5 +78,6 @@ export default function P2PHub() {
     </main>
     <Footer />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collection) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
   </>;
 }
