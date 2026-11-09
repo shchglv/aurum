@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { keywordPages } from "./keyword-pages";
 import { serviceIntents } from "./service-data";
+import { localizedLocales, localizedPages } from "./localized-pages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://aurum.ws";
@@ -9,6 +10,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/usdt`, lastModified: "2026-11-09", changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/p2p`, lastModified: "2026-10-15", changeFrequency: "weekly", priority: 0.95 },
     { url: `${base}/perevody`, lastModified: "2026-10-15", changeFrequency: "weekly", priority: 0.95 },
+    { url: `${base}/kripto`, lastModified: "2026-11-09", changeFrequency: "weekly", priority: 0.95 },
+    ...localizedLocales.flatMap((locale) => [
+      { url: `${base}/${locale}`, lastModified: "2026-11-09", changeFrequency: "weekly" as const, priority: 0.8 },
+      ...localizedPages[locale].map((page) => ({ url: `${base}/${locale}/${page.slug}`, lastModified: "2026-11-09", changeFrequency: "monthly" as const, priority: 0.75 })),
+    ]),
     { url: `${base}/virtual-card`, lastModified: "2026-11-09", changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/servisy`, lastModified: "2026-11-09", changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/faq`, lastModified: "2026-11-09", changeFrequency: "monthly", priority: 0.7 },

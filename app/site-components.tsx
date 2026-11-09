@@ -26,6 +26,7 @@ export function PopularPages() {
     ["Подписки", "Карта для зарубежных сервисов", "/subscriptions"],
     ["Сервисы", "Steam, ChatGPT, Spotify и другие", "/servisy"],
     ["Криптокарта", "Виртуальная карта с пополнением USDT", "/crypto-card"],
+    ["Крипто-гид", "USDT, кошелёк и переводы за границу", "/kripto"],
     ["Telegram", "Кошелёк и карта в Telegram Mini App", "/telegram-app"],
   ];
   return <section className="popular-pages section-shell"><div className="section-heading compact"><div><div className="eyebrow"><span /> Популярные запросы</div><h2>Найдите свой<br />сценарий</h2></div><p>Подробные страницы по самым востребованным задачам — с условиями, ограничениями и ответами.</p></div><div className="popular-grid">{pages.map(([label, title, href], index) => <a href={href} key={href}><span>{String(index + 1).padStart(2, "0")} · {label}</span><b>{title}</b><i>↗</i></a>)}</div></section>;
