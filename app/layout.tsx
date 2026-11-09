@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-
-const SITE_URL = "https://aurum.ws";
+import { SITE_URL } from "./site-config";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

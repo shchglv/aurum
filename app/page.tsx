@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Footer, Header, PopularPages, PrimaryButton } from "./site-components";
+import { LICENSE, LICENSE_TEXT_LONG, LICENSE_TEXT, SITE_URL } from "./site-config";
 
 export const metadata: Metadata = {
   title: "AURUM — Web3-кошелёк, USDT и виртуальная карта",
@@ -10,14 +11,14 @@ export const metadata: Metadata = {
     title: "AURUM — Web3-кошелёк, USDT и виртуальная карта",
     description: "Покупка USDT за рубли, виртуальные карты и переводы в одном сервисе.",
     type: "website",
-    url: "https://aurum.ws",
+    url: SITE_URL,
   },
 };
 
 const faq = [
   {
     q: "Что такое AURUM?",
-    a: "AURUM — крипто-фиатный кошелёк, который объединяет рублёвый счёт, операции с USDT и виртуальные карты. Сервис работает на базе РНКО «Алтын» с лицензией Национального банка Республики Абхазии №005.",
+    a: `AURUM — крипто-фиатный кошелёк, который объединяет рублёвый счёт, операции с USDT и виртуальные карты. ${LICENSE_TEXT}`,
   },
   {
     q: "Как купить USDT за рубли?",
@@ -103,7 +104,7 @@ export default function Home() {
             <div><strong>0%</strong><span>пополнение и вывод RUB</span></div>
             <div><strong>0%</strong><span>операции по картам</span></div>
             <div><strong>24/7</strong><span>доступ к кошельку</span></div>
-            <div><strong>№005</strong><span>банковская лицензия</span></div>
+            <div><strong>{LICENSE.number}</strong><span>банковская лицензия</span></div>
           </div>
         </section>
 
@@ -172,8 +173,8 @@ export default function Home() {
         <section className="license" id="license">
           <div className="section-shell license-inner">
             <div className="license-mark">A<span>✓</span></div>
-            <div><div className="eyebrow light"><span /> Регулирование</div><h2>Не просто приложение.<br /><em>Лицензированный сервис.</em></h2><p>AURUM работает на базе РНКО «Алтын». Лицензия Национального банка Республики Абхазии на осуществление банковских операций для расчётной организации №005 от 15.06.2012.</p><a href="https://nb-ra.org/rnko-altyn.html" target="_blank" rel="noreferrer">Проверить лицензию <span>↗</span></a></div>
-            <div className="license-facts"><div><b>№005</b><span>номер лицензии</span></div><div><b>2012</b><span>год выдачи</span></div><div><b>РНКО</b><span>регулируемая организация</span></div></div>
+            <div><div className="eyebrow light"><span /> Регулирование</div><h2>Не просто приложение.<br /><em>Лицензированный сервис.</em></h2><p>{LICENSE_TEXT_LONG}</p><a href={LICENSE.registryUrl} target="_blank" rel="noreferrer">Проверить лицензию <span>↗</span></a></div>
+            <div className="license-facts"><div><b>{LICENSE.number}</b><span>номер лицензии</span></div><div><b>{LICENSE.year}</b><span>год выдачи</span></div><div><b>{LICENSE.kind}</b><span>регулируемая организация</span></div></div>
           </div>
         </section>
 

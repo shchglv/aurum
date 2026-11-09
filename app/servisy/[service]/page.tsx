@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Footer, Header, PrimaryButton } from "../../site-components";
 import { getServiceIntent, serviceIntents } from "../../service-data";
+import { SITE_URL } from "../../site-config";
 
 type PageProps = { params: Promise<{ service: string }> };
 
@@ -25,11 +26,11 @@ export default async function ServicePage({ params }: PageProps) {
   const service = getServiceIntent((await params).service);
   if (!service) notFound();
   const related = service.related.map(getServiceIntent).filter(Boolean);
-  const canonical = `https://aurum.ws/servisy/${service.slug}`;
+  const canonical = `${SITE_URL}/servisy/${service.slug}`;
   const schemas = [
     {
       "@context": "https://schema.org", "@type": "WebPage", name: service.title, description: service.description,
-      url: canonical, inLanguage: "ru-RU", dateModified: "2026-11-09", isPartOf: { "@type": "WebSite", name: "AURUM", url: "https://aurum.ws" },
+      url: canonical, inLanguage: "ru-RU", dateModified: "2026-11-09", isPartOf: { "@type": "WebSite", name: "AURUM", url: `${SITE_URL}` },
       citation: service.officialSource.url, speakable: { "@type": "SpeakableSpecification", cssSelector: [".answer-box p", "h1"] },
     },
     {
@@ -37,8 +38,8 @@ export default async function ServicePage({ params }: PageProps) {
     },
     {
       "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
-        { "@type": "ListItem", position: 1, name: "AURUM", item: "https://aurum.ws" },
-        { "@type": "ListItem", position: 2, name: "Сервисы", item: "https://aurum.ws/servisy" },
+        { "@type": "ListItem", position: 1, name: "AURUM", item: `${SITE_URL}` },
+        { "@type": "ListItem", position: 2, name: "Сервисы", item: `${SITE_URL}/servisy` },
         { "@type": "ListItem", position: 3, name: service.name, item: canonical },
       ],
     },

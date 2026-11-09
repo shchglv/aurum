@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { SeoPage } from "../site-components";
+import { SITE_URL } from "../site-config";
 
-export const metadata: Metadata = { title: "Виртуальная карта иностранного банка онлайн — AURUM", description: "Оформите виртуальную карту для оплаты зарубежных сервисов, подписок и покупок за границей. Управление онлайн в AURUM.", alternates: { canonical: "/virtual-card" }, openGraph: { title: "Виртуальная карта иностранного банка онлайн — AURUM", description: "Отдельные реквизиты для зарубежных сервисов, подписок и интернет-покупок.", type: "website", url: "https://aurum.ws/virtual-card" } };
+export const metadata: Metadata = { title: "Виртуальная карта иностранного банка онлайн — AURUM", description: "Оформите виртуальную карту для оплаты зарубежных сервисов, подписок и покупок за границей. Управление онлайн в AURUM.", alternates: { canonical: "/virtual-card" }, openGraph: { title: "Виртуальная карта иностранного банка онлайн — AURUM", description: "Отдельные реквизиты для зарубежных сервисов, подписок и интернет-покупок.", type: "website", url: `${SITE_URL}/virtual-card` } };
 
 export default function CardPage() {
   return <SeoPage eyebrow="Виртуальная карта" title="Карта иностранного банка для онлайн-платежей и поездок" lead="Отдельные реквизиты для зарубежных подписок, покупок и сервисов. Выпуск и управление картой — онлайн в кошельке AURUM.">

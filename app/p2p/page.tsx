@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer, Header, PrimaryButton } from "../site-components";
 import { getKeywordIntent, keywordPages } from "../keyword-pages";
+import { SITE_URL } from "../site-config";
 
 export const metadata: Metadata = {
   title: "P2P или AURUM: легальная альтернатива для покупки USDT",
@@ -24,7 +25,7 @@ export default function P2PHub() {
     "@type": "CollectionPage",
     name: "P2P и альтернативы для покупки USDT",
     inLanguage: "ru-RU",
-    url: "https://aurum.ws/p2p",
+    url: `${SITE_URL}/p2p`,
     description: metadata.description,
     mainEntity: {
       "@type": "ItemList",
@@ -32,13 +33,13 @@ export default function P2PHub() {
         "@type": "ListItem",
         position: index + 1,
         name: page!.title,
-        url: `https://aurum.ws/${page!.slug}`,
+        url: `${SITE_URL}/${page!.slug}`,
       })),
     },
   };
   const breadcrumb = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
-    { "@type": "ListItem", position: 1, name: "AURUM", item: "https://aurum.ws" },
-    { "@type": "ListItem", position: 2, name: "P2P и USDT", item: "https://aurum.ws/p2p" },
+    { "@type": "ListItem", position: 1, name: "AURUM", item: `${SITE_URL}` },
+    { "@type": "ListItem", position: 2, name: "P2P и USDT", item: `${SITE_URL}/p2p` },
   ] };
 
   return <>

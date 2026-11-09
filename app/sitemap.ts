@@ -3,9 +3,10 @@ import { keywordPages } from "./keyword-pages";
 import { serviceIntents } from "./service-data";
 import { localizedLocales, localizedPages } from "./localized-pages";
 import { exchangePages } from "./exchange-pages";
+import { SITE_URL } from "./site-config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://aurum.ws";
+  const base = SITE_URL;
   return [
     { url: base, lastModified: "2026-11-09", changeFrequency: "weekly", priority: 1 },
     { url: `${base}/usdt`, lastModified: "2026-11-09", changeFrequency: "weekly", priority: 0.9 },

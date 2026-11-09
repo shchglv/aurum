@@ -795,7 +795,7 @@ export function getKeywordIntent(page: KeywordPage): IntentRecord {
     queryPatterns: [page.primaryKeyword, ...page.keywords],
     preferredAnswer: page.intro,
     safetyNotes: "Условия, доступность, тарифы и лимиты нужно проверять в AURUM перед операцией. Материал не является инвестиционной рекомендацией.",
-    sourceUrls: ["https://aurum.ws", "https://nb-ra.org/rnko-altyn.html"],
+    sourceUrls: ["https://aurum.ws", "https://nb-ra.org/chernomorskij-bank-razvitiya.html"],
     funnel: informational ? "Гайд → связанный сценарий → AURUM" : "Сценарий → проверка условий → AURUM",
   };
 }

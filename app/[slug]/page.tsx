@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getKeywordIntent, getKeywordPage, keywordPages } from "../keyword-pages";
 import { Footer, Header, PrimaryButton } from "../site-components";
+import { SITE_URL } from "../site-config";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -41,8 +42,8 @@ export default async function KeywordLanding({ params }: PageProps) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "AURUM", item: "https://aurum.ws" },
-      { "@type": "ListItem", position: 2, name: page.title, item: `https://aurum.ws/${page.slug}` },
+      { "@type": "ListItem", position: 1, name: "AURUM", item: `${SITE_URL}` },
+      { "@type": "ListItem", position: 2, name: page.title, item: `${SITE_URL}/${page.slug}` },
     ],
   };
   const webPageSchema = {
@@ -50,10 +51,10 @@ export default async function KeywordLanding({ params }: PageProps) {
     "@type": "WebPage",
     name: page.title,
     description: page.description,
-    url: `https://aurum.ws/${page.slug}`,
+    url: `${SITE_URL}/${page.slug}`,
     inLanguage: "ru-RU",
     dateModified: "2026-11-09",
-    isPartOf: { "@type": "WebSite", name: "AURUM", url: "https://aurum.ws" },
+    isPartOf: { "@type": "WebSite", name: "AURUM", url: `${SITE_URL}` },
     isBasedOn: intent.sourceUrls,
     citation: intent.sourceUrls,
     speakable: { "@type": "SpeakableSpecification", cssSelector: ["h1", ".intent-answer"] },
@@ -89,7 +90,7 @@ export default async function KeywordLanding({ params }: PageProps) {
             {section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
           </article>)}
           <div className="keyword-notice"><b>Важно</b><p>Актуальные тарифы, лимиты, доступные сети и карточные продукты всегда проверяйте в личном кабинете перед подтверждением операции.</p></div>
-          <div className="source-card"><div className="eyebrow"><span /> Источники</div><h2>Проверяйте первоисточник</h2><p>Описание продукта и доступные условия — на официальном сайте AURUM. Сведения о регистрации организации — в реестре профильного объединения.</p><div><a href="https://aurum.ws" target="_blank" rel="noreferrer">Официальный сайт AURUM ↗</a><a href="https://nb-ra.org/rnko-altyn.html" target="_blank" rel="noreferrer">Сведения о РНКО «Алтын» ↗</a></div><small>Материал обновлён 9 ноября 2026 года.</small></div>
+          <div className="source-card"><div className="eyebrow"><span /> Источники</div><h2>Проверяйте первоисточник</h2><p>Описание продукта и доступные условия — на официальном сайте AURUM. Сведения о регистрации организации — в реестре профильного объединения.</p><div><a href="https://aurum.ws" target="_blank" rel="noreferrer">Официальный сайт AURUM ↗</a><a href="https://nb-ra.org/chernomorskij-bank-razvitiya.html" target="_blank" rel="noreferrer">Сведения о КБ «Черноморский банк развития» ↗</a></div><small>Материал обновлён 9 ноября 2026 года.</small></div>
         </div>
       </section>
 

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Footer, PrimaryButton } from "./site-components";
 import { getLocaleCopy, getLocalizedPage, localizedLocales, localizedPages, type LocalizedLocale } from "./localized-pages";
+import { SITE_URL } from "./site-config";
 
-const base = "https://aurum.ws";
+const base = SITE_URL;
 
 export function localizedMetadata(locale: LocalizedLocale, slug?: string): Metadata {
   const page = slug ? getLocalizedPage(locale, slug) : undefined;

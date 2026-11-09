@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer, Header, PrimaryButton } from "../site-components";
 import { serviceIntents } from "../service-data";
+import { SITE_URL } from "../site-config";
 
 export const metadata: Metadata = {
   title: "Как оплачивать зарубежные сервисы из России — AURUM",
@@ -14,20 +15,20 @@ export default function ServicesHub() {
     "@type": "CollectionPage",
     name: "Оплата зарубежных сервисов из России",
     inLanguage: "ru-RU",
-    url: "https://aurum.ws/servisy",
+    url: `${SITE_URL}/servisy`,
     mainEntity: {
       "@type": "ItemList",
       itemListElement: serviceIntents.map((service, index) => ({
         "@type": "ListItem",
         position: index + 1,
         name: service.name,
-        url: `https://aurum.ws/servisy/${service.slug}`,
+        url: `${SITE_URL}/servisy/${service.slug}`,
       })),
     },
   };
   const breadcrumb = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
-    { "@type": "ListItem", position: 1, name: "AURUM", item: "https://aurum.ws" },
-    { "@type": "ListItem", position: 2, name: "Сервисы", item: "https://aurum.ws/servisy" },
+    { "@type": "ListItem", position: 1, name: "AURUM", item: `${SITE_URL}` },
+    { "@type": "ListItem", position: 2, name: "Сервисы", item: `${SITE_URL}/servisy` },
   ] };
 
   return <>

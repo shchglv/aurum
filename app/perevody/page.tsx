@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer, Header, PrimaryButton } from "../site-components";
 import { getKeywordIntent, keywordPages } from "../keyword-pages";
+import { SITE_URL } from "../site-config";
 
 export const metadata: Metadata = {
   title: "Переводы на карты зарубежных банков — AURUM",
@@ -23,7 +24,7 @@ export default function TransfersHub() {
     "@type": "CollectionPage",
     name: "Переводы на карты зарубежных банков",
     inLanguage: "ru-RU",
-    url: "https://aurum.ws/perevody",
+    url: `${SITE_URL}/perevody`,
     description: metadata.description,
     mainEntity: {
       "@type": "ItemList",
@@ -31,13 +32,13 @@ export default function TransfersHub() {
         "@type": "ListItem",
         position: index + 1,
         name: page!.title,
-        url: `https://aurum.ws/${page!.slug}`,
+        url: `${SITE_URL}/${page!.slug}`,
       })),
     },
   };
   const breadcrumb = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
-    { "@type": "ListItem", position: 1, name: "AURUM", item: "https://aurum.ws" },
-    { "@type": "ListItem", position: 2, name: "Переводы", item: "https://aurum.ws/perevody" },
+    { "@type": "ListItem", position: 1, name: "AURUM", item: `${SITE_URL}` },
+    { "@type": "ListItem", position: 2, name: "Переводы", item: `${SITE_URL}/perevody` },
   ] };
 
   return <>
