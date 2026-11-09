@@ -1,6 +1,7 @@
 import { keywordIntents } from "../../keyword-pages";
 import { serviceIntents } from "../../service-data";
 import { localizedLocales, localizedPages } from "../../localized-pages";
+import { exchangeIntents } from "../../exchange-pages";
 
 export async function GET() {
   const serviceRecords = serviceIntents.map((service) => ({
@@ -37,6 +38,6 @@ export async function GET() {
     language: "ru",
     market: "Россия",
     canonicalPolicy: "Один кластер близких запросов — одна каноническая страница.",
-    intents: [...keywordIntents, ...serviceRecords, ...localizedRecords],
+    intents: [...keywordIntents, ...serviceRecords, ...localizedRecords, ...exchangeIntents],
   }, { headers: { "Cache-Control": "public, max-age=3600", "Content-Signal": "search=yes, ai-input=yes" } });
 }

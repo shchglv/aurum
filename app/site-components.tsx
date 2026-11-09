@@ -7,7 +7,7 @@ export function PrimaryButton({ label = "Открыть кошелёк" }: { lab
 export function Header() {
   return <header className="site-header"><div className="section-shell header-inner">
     <a className="brand" href="/" aria-label="AURUM — главная"><img className="brand-mark" src="/source/aurum-logo.svg" alt="" /><span>AURUM<small>WALLET</small></span></a>
-    <nav aria-label="Главная навигация"><a href="/#features">Возможности</a><a href="/usdt">USDT</a><a href="/p2p">P2P → AURUM</a><a href="/perevody">Переводы</a><a href="/virtual-card">Виртуальная карта</a><a href="/servisy">Сервисы</a><a href="/#license">Лицензия</a><a href="/faq">FAQ</a></nav>
+    <nav aria-label="Главная навигация"><a href="/#features">Возможности</a><a href="/usdt">USDT</a><a href="/p2p">P2P → AURUM</a><a href="/perevody">Переводы</a><a href="/birzhi">Криптобиржи</a><a href="/virtual-card">Виртуальная карта</a><a href="/servisy">Сервисы</a><a href="/#license">Лицензия</a><a href="/faq">FAQ</a></nav>
     <a className="header-cta" href={WALLET_URL} target="_blank" rel="noreferrer">Открыть кошелёк <span>↗</span></a>
   </div></header>;
 }
@@ -27,6 +27,7 @@ export function PopularPages() {
     ["Сервисы", "Steam, ChatGPT, Spotify и другие", "/servisy"],
     ["Криптокарта", "Виртуальная карта с пополнением USDT", "/crypto-card"],
     ["Крипто-гид", "USDT, кошелёк и переводы за границу", "/kripto"],
+    ["Криптобиржи", "Binance, OKX, Bybit и ещё 7 брендов", "/birzhi"],
     ["Telegram", "Кошелёк и карта в Telegram Mini App", "/telegram-app"],
   ];
   return <section className="popular-pages section-shell"><div className="section-heading compact"><div><div className="eyebrow"><span /> Популярные запросы</div><h2>Найдите свой<br />сценарий</h2></div><p>Подробные страницы по самым востребованным задачам — с условиями, ограничениями и ответами.</p></div><div className="popular-grid">{pages.map(([label, title, href], index) => <a href={href} key={href}><span>{String(index + 1).padStart(2, "0")} · {label}</span><b>{title}</b><i>↗</i></a>)}</div></section>;
