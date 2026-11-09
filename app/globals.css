@@ -242,3 +242,60 @@ nav { gap: 24px; font-size: 12px; }
   .transfer-node { width: 100%; min-height: 116px; }
   .transfer-arrow { transform: rotate(90deg); }
 }
+
+/* AURUM wallet palette — purple / lilac / white */
+:root {
+  --paper: #f6f1fb;
+  --ink: #2a1233;
+  --green: #9641b2;
+  --muted: #8f8796;
+  --line: #e6ddec;
+  --warm: #fff;
+  --shadow-soft: 0 20px 60px rgba(64, 24, 79, .1);
+}
+
+body { background: var(--paper); color: var(--ink); }
+.site-header { background: rgba(246, 241, 251, .88); border-bottom-color: rgba(42, 18, 51, .09); }
+.header-cta { background: var(--green); border-color: var(--green); color: #fff; }
+.header-cta span { background: #fff; color: var(--ink); }
+.hero {
+  background:
+    radial-gradient(circle at 78% 18%, rgba(255, 221, 255, .24), transparent 28%),
+    radial-gradient(circle at 48% 110%, rgba(198, 137, 220, .2), transparent 35%),
+    linear-gradient(135deg, #8c3ca8, #6d2a8c);
+}
+.hero::before { opacity: .18; }
+.hero h1 em { color: #f1caff; }
+.hero .primary-button { background: #fff; color: var(--ink); box-shadow: 0 14px 35px rgba(46, 14, 58, .2); }
+.hero .primary-button span { background: var(--green); color: #fff; }
+.hero .text-link { border-color: rgba(255,255,255,.58); }
+.trust-bar { background: #30133a; }
+.trust-grid strong { color: #d79ae8; }
+.bento-exchange { background: linear-gradient(145deg, #a84fc2, #82329f); color: #fff; border-color: #a84fc2; }
+.bento-exchange p { color: #f4dbfb; }
+.bento-world { background: #30133a; border-color: #4c2857; }
+.bento-safe { background: #fff; }
+.bento-telegram { background: #30133a; }
+.safe-line b { background: var(--green); color: #fff; }
+.how, .final-cta { background: #30133a; }
+.how .primary-button, .final-cta .primary-button { background: #fff; color: var(--ink); }
+.how .primary-button span, .final-cta .primary-button span { background: var(--green); color: #fff; }
+.license { background: linear-gradient(135deg, #a84fc2, #8c3ca8); color: #fff; }
+.license p { color: #f4dbfb; }
+.license-facts span { color: #f1caff; }
+.license a { border-color: rgba(255,255,255,.7); }
+.wallet-showcase { background: #30133a; }
+.transfer-spotlight { background: #fff; }
+.transfer-copy h2 em { color: #9641b2; }
+.transfer-flow { background: #f1e9f7; }
+.transfer-node { border-color: #e1d5e8; }
+.transfer-arrow { color: #8b4aa3; }
+.transfer-node-accent { background: #ead3f2; border-color: #c99adb; }
+.transfer-node-accent span, .transfer-node-accent small { color: #714181; }
+.transfer-node-dark { background: #30133a; border-color: #4c2857; }
+.service-grid a:hover, .popular-grid a:hover, .related-keywords .related-grid > a:hover { background: #30133a; }
+.keyword-notice { background: #ead3f2; }
+.keyword-notice p { color: #684474; }
+.cta-glow { background: radial-gradient(circle, rgba(214, 154, 232, .35), transparent 62%); }
+.site-footer { background: #211027; }
+.brand-light .brand-mark { filter: brightness(0) invert(1); }
