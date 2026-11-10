@@ -14,7 +14,12 @@ export function localizedMetadata(locale: LocalizedLocale, slug?: string): Metad
     title: page?.title ?? copy.hubTitle,
     description: page?.description ?? copy.hubDescription,
     keywords: page ? [page.primaryKeyword, ...page.keywords] : undefined,
-    alternates: { canonical: path, languages: Object.fromEntries(localizedLocales.map((item) => [item, `${base}/${item}${slug ? `/${slug}` : ""}`])) },
+    alternates: {
+      canonical: path,
+      languages: slug
+        ? Object.fromEntries(localizedLocales.map((item) => [item, `${base}/${item}/${slug}`]))
+        : { ru: base, "x-default": base, ...Object.fromEntries(localizedLocales.map((item) => [item, `${base}/${item}`])) },
+    },
     openGraph: { title: page?.title ?? copy.hubTitle, description: page?.description ?? copy.hubDescription, type: "article", url: `${base}${path}` },
   };
 }
@@ -47,7 +52,7 @@ export function LocalizedHub({ locale }: { locale: LocalizedLocale }) {
 
   return <>
     <Header current={locale} home={`/${locale}`} items={navItems} more={navMore} cta={ui.headerCta} />
-    <main>
+    <main lang={locale}>
       <div className="ticker section-shell" aria-label="AURUM">
         <div className="ticker-track">
           {[0, 1].map((row) => (
@@ -118,7 +123,7 @@ export function LocalizedPage({ locale, slug }: { locale: LocalizedLocale; slug:
 
   return <>
     <Header current={locale} home={`/${locale}`} items={navItems} more={navMore} cta={ui.headerCta} />
-    <main className="keyword-page">
+    <main className="keyword-page" lang={locale}>
       <section className="keyword-hero section-shell">
         <div className="breadcrumbs"><a href={`/${locale}`}>{copy.home}</a><span>→</span><b>{page.primaryKeyword}</b></div>
         <div className="eyebrow"><span /> {page.eyebrow}</div>
