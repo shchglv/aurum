@@ -1,6 +1,6 @@
-const WALLET_URL = "https://vk.cc/d0ovkk";
-
 import type { LocaleUi } from "./localized-ui";
+
+const WALLET_URL = "https://vk.cc/d0ovkk";
 
 export const LANGUAGES = [
   { code: "ru", label: "RU", title: "Русский", href: "/" },
@@ -8,6 +8,8 @@ export const LANGUAGES = [
   { code: "ky", label: "KY", title: "Кыргызча", href: "/ky" },
   { code: "tg", label: "TJ", title: "Тоҷикӣ", href: "/tg" },
 ] as const;
+
+export type LinkItem = { label: string; href: string };
 
 export function PrimaryButton({ label = "Открыть кошелёк" }: { label?: string }) {
   return <a className="primary-button" href={WALLET_URL} target="_blank" rel="noreferrer">{label}<span>↗</span></a>;
@@ -23,22 +25,119 @@ export function LanguageSwitcher({ current = "ru" }: { current?: string }) {
   );
 }
 
-export function Header({ current = "ru", home = "/" }: { current?: string; home?: string }) {
+const RU_NAV: LinkItem[] = [
+  { label: "Возможности", href: "/#features" },
+  { label: "USDT", href: "/usdt" },
+  { label: "Переводы", href: "/perevody" },
+  { label: "Карта", href: "/virtual-card" },
+  { label: "Сервисы", href: "/servisy" },
+  { label: "FAQ", href: "/faq" },
+];
+
+const RU_MORE: { label: string; items: LinkItem[] } = {
+  label: "Ещё",
+  items: [
+    { label: "P2P → AURUM", href: "/p2p" },
+    { label: "Криптобиржи", href: "/birzhi" },
+    { label: "Лицензия", href: "/#license" },
+  ],
+};
+
+export function Header({ current = "ru", home = "/", items, more, cta }: {
+  current?: string;
+  home?: string;
+  items?: LinkItem[];
+  more?: { label: string; items: LinkItem[] };
+  cta?: string;
+}) {
+  const navItems = items ?? RU_NAV;
+  const moreBlock = more ?? RU_MORE;
+  const ctaLabel = cta ?? "Открыть кошелёк";
+
   return <header className="site-header"><div className="section-shell header-inner">
-    <a className="brand" href={home} aria-label="AURUM — главная"><img className="brand-mark" src="/source/aurum-logo.svg" alt="" /><span>AURUM<small>WALLET</small></span></a>
-    <nav aria-label="Главная навигация"><a href="/#features">Возможности</a><a href="/usdt">USDT</a><a href="/p2p">P2P → AURUM</a><a href="/perevody">Переводы</a><a href="/birzhi">Криптобиржи</a><a href="/virtual-card">Виртуальная карта</a><a href="/servisy">Сервисы</a><a href="/#license">Лицензия</a><a href="/faq">FAQ</a></nav>
-    <div className="header-actions"><LanguageSwitcher current={current} /><a className="header-cta" href={WALLET_URL} target="_blank" rel="noreferrer">Открыть кошелёк <span>↗</span></a></div>
+    <a className="brand" href={home} aria-label="AURUM"><img className="brand-mark" src="/source/aurum-logo.svg" alt="" /><span>AURUM<small>WALLET</small></span></a>
+
+    <nav className="main-nav" aria-label="Основная навигация">
+      {navItems.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
+      {moreBlock.items.length > 0 && <details className="nav-more">
+        <summary>{moreBlock.label}<span aria-hidden="true">▾</span></summary>
+        <div className="nav-more-panel">
+          {moreBlock.items.map((item) => <a key={item.href} href={item.href}>{item.label}<i aria-hidden="true">↗</i></a>)}
+        </div>
+      </details>}
+    </nav>
+
+    <div className="header-actions">
+      <LanguageSwitcher current={current} />
+      <a className="header-cta" href={WALLET_URL} target="_blank" rel="noreferrer"><b>{ctaLabel}</b><span>↗</span></a>
+      <details className="nav-burger">
+        <summary aria-label="Меню"><span /><span /><span /></summary>
+        <div className="burger-panel">
+          <a className="brand" href={home}><img className="brand-mark" src="/source/aurum-logo.svg" alt="" /><span>AURUM<small>WALLET</small></span></a>
+          <div className="burger-links">
+            {navItems.map((item) => <a key={item.href} href={item.href}>{item.label}<i aria-hidden="true">↗</i></a>)}
+            {moreBlock.items.map((item) => <a key={item.href} href={item.href}>{item.label}<i aria-hidden="true">↗</i></a>)}
+          </div>
+          <LanguageSwitcher current={current} />
+          <a className="primary-button" href={WALLET_URL} target="_blank" rel="noreferrer">{ctaLabel}<span>↗</span></a>
+        </div>
+      </details>
+    </div>
   </div></header>;
 }
 
-const FOOTER_PRODUCTS: [string, string][] = [
-  ["Купить USDT", "/usdt"], ["P2P и альтернативы", "/p2p"], ["Переводы за границу", "/perevody"],
-  ["Виртуальная карта", "/virtual-card"], ["Зарубежная карта", "/foreign-card"], ["Криптокарта", "/crypto-card"],
+const FOOTER_PRODUCTS: LinkItem[] = [
+  { label: "Купить USDT", href: "/usdt" },
+  { label: "P2P и альтернативы", href: "/p2p" },
+  { label: "Переводы за границу", href: "/perevody" },
+  { label: "Виртуальная карта", href: "/virtual-card" },
+  { label: "Зарубежная карта", href: "/foreign-card" },
+  { label: "Криптокарта", href: "/crypto-card" },
 ];
 
-export function Footer({ ui, code = "RU", home = "/", products }: { ui?: LocaleUi; code?: string; home?: string; products?: [string, string][] } = {}) {
+const FOOTER_INFO: LinkItem[] = [
+  { label: "Оплата сервисов", href: "/servisy" },
+  { label: "Что такое USDT", href: "/what-is-usdt" },
+  { label: "Как пользоваться картой", href: "/how-to-use-virtual-card" },
+  { label: "Вопросы и ответы", href: "/faq" },
+  { label: "info@aurum.ws", href: "mailto:info@aurum.ws" },
+];
+
+export function Footer({ ui, code = "RU", home = "/", products, info }: {
+  ui?: LocaleUi;
+  code?: string;
+  home?: string;
+  products?: LinkItem[];
+  info?: LinkItem[];
+} = {}) {
   const productLinks = products ?? FOOTER_PRODUCTS;
-  return <footer className="site-footer"><div className="section-shell footer-top"><div><a className="brand brand-light" href={home}><img className="brand-mark" src="/source/aurum-logo.svg" alt="" /><span>AURUM<small>WALLET</small></span></a><p>{ui ? ui.footerNote : <>Рубли, USDT и виртуальные карты<br />в одном лицензированном сервисе.</>}</p></div><div><b>{ui?.footerProducts ?? "Продукты"}</b>{productLinks.map(([label, href]) => <a href={href} key={href}>{label}</a>)}</div><div><b>{ui?.footerInfo ?? "Информация"}</b><a href="/servisy">Оплата сервисов</a><a href="/what-is-usdt">Что такое USDT</a><a href="/how-to-use-virtual-card">Как пользоваться картой</a><a href="/faq">Вопросы и ответы</a><a href="mailto:info@aurum.ws">info@aurum.ws</a></div><div className="footer-action"><span>{ui?.footerReady ?? "Готовы начать?"}</span><PrimaryButton /></div></div><div className="section-shell footer-bottom"><span>© AURUM, 2026</span><p>{ui?.disclaimer ?? "Информация на сайте не является индивидуальной инвестиционной рекомендацией."}</p><span>{code}</span></div></footer>;
+  const infoLinks = info ?? FOOTER_INFO;
+  const note = ui ? ui.footerNote : "Рубли, USDT и виртуальные карты в одном лицензированном сервисе.";
+  const disclaimer = ui?.disclaimer ?? "Информация на сайте не является индивидуальной инвестиционной рекомендацией.";
+  const ctaLabel = ui?.headerCta ?? "Открыть кошелёк";
+
+  return <footer className="site-footer">
+    <div className="section-shell footer-top">
+      <div className="footer-brand">
+        <a className="brand brand-light" href={home}><img className="brand-mark" src="/source/aurum-logo.svg" alt="" /><span>AURUM<small>WALLET</small></span></a>
+        <p>{note}</p>
+        <a className="primary-button" href={WALLET_URL} target="_blank" rel="noreferrer">{ctaLabel}<span>↗</span></a>
+      </div>
+      <nav className="footer-col" aria-label={ui?.footerProducts ?? "Продукты"}>
+        <b>{ui?.footerProducts ?? "Продукты"}</b>
+        {productLinks.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
+      </nav>
+      <nav className="footer-col" aria-label={ui?.footerInfo ?? "Информация"}>
+        <b>{ui?.footerInfo ?? "Информация"}</b>
+        {infoLinks.map((item) => <a key={item.href} href={item.href}>{item.label}</a>)}
+      </nav>
+    </div>
+    <div className="section-shell footer-bottom">
+      <span>© AURUM, 2026</span>
+      <p>{disclaimer}</p>
+      <span>{code}</span>
+    </div>
+  </footer>;
 }
 
 export function PopularPages() {

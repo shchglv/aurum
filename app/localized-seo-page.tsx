@@ -40,11 +40,13 @@ export function LocalizedHub({ locale }: { locale: LocalizedLocale }) {
   const pages = localizedPages[locale];
   const words = copy.hubTitle.split(" ");
   const lastWord = words.pop();
-  const products: [string, string][] = pages.slice(0, 6).map((page) => [page.eyebrow, `/${locale}/${page.slug}`]);
+  const navItems = ui.nav.map((item) => ({ label: item.label, href: `/${locale}${item.path}` }));
+  const navMore = { label: ui.navMore.label, items: ui.navMore.items.map((item) => ({ label: item.label, href: `/${locale}${item.path}` })) };
+  const products = pages.slice(0, 6).map((page) => ({ label: page.eyebrow, href: `/${locale}/${page.slug}` }));
   const collection = { "@context": "https://schema.org", "@type": "CollectionPage", name: copy.hubTitle, url: `${base}/${locale}`, inLanguage: locale, mainEntity: { "@type": "ItemList", itemListElement: pages.map((page, index) => ({ "@type": "ListItem", position: index + 1, name: page.title, url: `${base}/${locale}/${page.slug}` })) } };
 
   return <>
-    <Header current={locale} home={`/${locale}`} />
+    <Header current={locale} home={`/${locale}`} items={navItems} more={navMore} cta={ui.headerCta} />
     <main>
       <div className="ticker section-shell" aria-label="AURUM">
         <div className="ticker-track">
@@ -97,7 +99,7 @@ export function LocalizedHub({ locale }: { locale: LocalizedLocale }) {
         <PrimaryButton label={copy.open} />
       </section>
     </main>
-    <Footer ui={ui} code={locale.toUpperCase()} home={`/${locale}`} products={products} />
+    <Footer ui={ui} code={locale.toUpperCase()} home={`/${locale}`} products={products} info={ui.footerInfoLinks} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collection) }} />
   </>;
 }
@@ -108,12 +110,14 @@ export function LocalizedPage({ locale, slug }: { locale: LocalizedLocale; slug:
   const ui = getLocaleUi(locale);
   const page = getLocalizedPage(locale, slug);
   if (!page) return null;
-  const products: [string, string][] = localizedPages[locale].slice(0, 6).map((item) => [item.eyebrow, `/${locale}/${item.slug}`]);
+  const navItems = ui.nav.map((item) => ({ label: item.label, href: `/${locale}${item.path}` }));
+  const navMore = { label: ui.navMore.label, items: ui.navMore.items.map((item) => ({ label: item.label, href: `/${locale}${item.path}` })) };
+  const products = localizedPages[locale].slice(0, 6).map((item) => ({ label: item.eyebrow, href: `/${locale}/${item.slug}` }));
   const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: page.faq.map((item) => ({ "@type": "Question", name: item.question, acceptedAnswer: { "@type": "Answer", text: item.answer } })) };
   const breadcrumb = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "AURUM", item: base }, { "@type": "ListItem", position: 2, name: copy.name, item: `${base}/${locale}` }, { "@type": "ListItem", position: 3, name: page.title, item: `${base}/${locale}/${slug}` }] };
 
   return <>
-    <Header current={locale} home={`/${locale}`} />
+    <Header current={locale} home={`/${locale}`} items={navItems} more={navMore} cta={ui.headerCta} />
     <main className="keyword-page">
       <section className="keyword-hero section-shell">
         <div className="breadcrumbs"><a href={`/${locale}`}>{copy.home}</a><span>→</span><b>{page.primaryKeyword}</b></div>
@@ -164,7 +168,7 @@ export function LocalizedPage({ locale, slug }: { locale: LocalizedLocale; slug:
 
       <section className="intent-meta section-shell"><span>{ui.cluster}</span><p>{page.keywords.join(" · ")}</p><a href={`/${locale}`}>{copy.catalog} →</a></section>
     </main>
-    <Footer ui={ui} code={locale.toUpperCase()} home={`/${locale}`} products={products} />
+    <Footer ui={ui} code={locale.toUpperCase()} home={`/${locale}`} products={products} info={ui.footerInfoLinks} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
   </>;

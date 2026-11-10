@@ -1,5 +1,7 @@
 import type { LocalizedLocale } from "./localized-pages";
 
+export type NavItem = { label: string; path: string };
+
 // Тексты интерфейса для локализованных страниц: одна и та же структура,
 // один и тот же набор блоков, что и на русской версии.
 export type LocaleUi = {
@@ -31,6 +33,10 @@ export type LocaleUi = {
   footerReady: string;
   footerNote: string;
   disclaimer: string;
+  nav: NavItem[];
+  navMore: { label: string; items: NavItem[] };
+  headerCta: string;
+  footerInfoLinks: { label: string; href: string }[];
 };
 
 export const localizedUi: Record<LocalizedLocale, LocaleUi> = {
@@ -63,6 +69,26 @@ export const localizedUi: Record<LocalizedLocale, LocaleUi> = {
     footerReady: "Boshlashga tayyormisiz?",
     footerNote: "Rubl, USDT va virtual kartalar bitta litsenziyalangan servisda.",
     disclaimer: "Saytdagi ma’lumot individual investitsiya tavsiyasi hisoblanmaydi.",
+    nav: [
+      { label: "Katalog", path: "#catalog" },
+      { label: "USDT", path: "/buy-usdt" },
+      { label: "O‘tkazmalar", path: "/send-usdt-abroad" },
+      { label: "Hamyon", path: "/crypto-wallet" },
+      { label: "Komissiyalar", path: "/fees" },
+    ],
+    navMore: {
+      label: "Yana",
+      items: [
+        { label: "Kripto o‘tkazma", path: "/crypto-transfer" },
+        { label: "Xalqaro o‘tkazma", path: "/international-transfer" },
+      ],
+    },
+    headerCta: "Hamyonni ochish",
+    footerInfoLinks: [
+      { label: "AURUM rasmiy sayti", href: "https://aurum.ws" },
+      { label: "Litsenziya ma’lumotlari", href: "https://nb-ra.org/chernomorskij-bank-razvitiya.html" },
+      { label: "info@aurum.ws", href: "mailto:info@aurum.ws" },
+    ],
   },
   ky: {
     ticker: ["USDT 30 секундда сатып алуу", "Чет өлкөлүк сервистер үчүн виртуалдык карта", "СБП аркылуу толуктоо — 0%", "Кокустук P2P которууларсыз", "24/7 иштейбиз"],
@@ -93,6 +119,26 @@ export const localizedUi: Record<LocalizedLocale, LocaleUi> = {
     footerReady: "Баштоого даярсызбы?",
     footerNote: "Рубль, USDT жана виртуалдык карталар бир лицензияланган сервисте.",
     disclaimer: "Сайттагы маалымат жеке инвестициялык кеңеш болуп эсептелбейт.",
+    nav: [
+      { label: "Каталог", path: "#catalog" },
+      { label: "USDT", path: "/buy-usdt" },
+      { label: "Которуулар", path: "/send-usdt-abroad" },
+      { label: "Капчык", path: "/crypto-wallet" },
+      { label: "Комиссиялар", path: "/fees" },
+    ],
+    navMore: {
+      label: "Дагы",
+      items: [
+        { label: "Крипто которуу", path: "/crypto-transfer" },
+        { label: "Эл аралык которуу", path: "/international-transfer" },
+      ],
+    },
+    headerCta: "Капчыкты ачуу",
+    footerInfoLinks: [
+      { label: "AURUM расмий сайты", href: "https://aurum.ws" },
+      { label: "Лицензия маалыматы", href: "https://nb-ra.org/chernomorskij-bank-razvitiya.html" },
+      { label: "info@aurum.ws", href: "mailto:info@aurum.ws" },
+    ],
   },
   tg: {
     ticker: ["USDT дар 30 сония харидан", "Корти виртуалӣ барои сервисҳои хориҷӣ", "Пуркунӣ тавассути СБП — 0%", "Бе интиқолҳои тасодуфии P2P", "24/7 кор мекунем"],
@@ -123,6 +169,26 @@ export const localizedUi: Record<LocalizedLocale, LocaleUi> = {
     footerReady: "Ба оғоз омодаед?",
     footerNote: "Рубл, USDT ва кортҳои виртуалӣ дар як сервиси литсензиядошта.",
     disclaimer: "Маълумоти сайт тавсияи инфиродии сармоягузорӣ нест.",
+    nav: [
+      { label: "Феҳрист", path: "#catalog" },
+      { label: "USDT", path: "/buy-usdt" },
+      { label: "Интиқолҳо", path: "/send-usdt-abroad" },
+      { label: "Ҳамён", path: "/crypto-wallet" },
+      { label: "Комиссияҳо", path: "/fees" },
+    ],
+    navMore: {
+      label: "Бештар",
+      items: [
+        { label: "Интиқоли крипто", path: "/crypto-transfer" },
+        { label: "Интиқоли байналмилалӣ", path: "/international-transfer" },
+      ],
+    },
+    headerCta: "Кушодани ҳамён",
+    footerInfoLinks: [
+      { label: "Сайти расмии AURUM", href: "https://aurum.ws" },
+      { label: "Маълумоти литсензия", href: "https://nb-ra.org/chernomorskij-bank-razvitiya.html" },
+      { label: "info@aurum.ws", href: "mailto:info@aurum.ws" },
+    ],
   },
 };
 

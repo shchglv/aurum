@@ -378,3 +378,137 @@ h1, h2, h3 { word-spacing: .07em; }
   .hero > * { min-width: 0; }
   .hero-copy h1, .hero-lead { max-width: 100%; }
 }
+
+/* ============================================================
+   Шапка: высота в переменной, разреженная навигация, меню «Ещё»,
+   бургер на планшете и телефоне. Полупрозрачность убрана —
+   под шапкой больше не просвечивает контент.
+   ============================================================ */
+:root { --header-h: 76px; }
+@media (max-width: 1024px) { :root { --header-h: 64px; } }
+
+.site-header {
+  position: fixed; inset: 0 0 auto; height: var(--header-h); z-index: 60;
+  background: #f7f7fa;
+  border-bottom: 1px solid rgba(23,25,24,.10);
+}
+main { padding-top: var(--header-h); }
+[id] { scroll-margin-top: calc(var(--header-h) + 18px); }
+
+.header-inner { display: flex; align-items: center; gap: 22px; height: 100%; }
+.header-inner .brand { flex: 0 0 auto; }
+.main-nav { display: flex; align-items: center; gap: 20px; flex: 1 1 auto; min-width: 0; }
+.main-nav > a, .nav-more > summary {
+  font-size: 12.5px; font-weight: 800; letter-spacing: -.01em; white-space: nowrap;
+  color: var(--ink); text-decoration: none; line-height: 1;
+}
+.main-nav > a:hover, .nav-more > summary:hover { color: #6d3ba8; }
+.nav-more { position: relative; }
+.nav-more > summary { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; list-style: none; }
+.nav-more > summary::-webkit-details-marker { display: none; }
+.nav-more > summary span { font-size: 9px; transition: transform .18s ease; }
+.nav-more[open] > summary span { transform: rotate(180deg); }
+.nav-more-panel {
+  position: absolute; top: calc(100% + 16px); left: -14px; min-width: 232px; z-index: 70;
+  display: grid; gap: 2px; padding: 10px; border-radius: 16px; background: #fff;
+  border: 1px solid var(--line); box-shadow: 0 24px 48px rgba(18,16,28,.14);
+}
+.nav-more-panel a {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  padding: 10px 12px; border-radius: 10px; font-size: 12.5px; font-weight: 700;
+  color: var(--ink); text-decoration: none;
+}
+.nav-more-panel a:hover { background: rgba(23,25,24,.06); }
+.nav-more-panel i { font-style: normal; color: #8a8d86; }
+
+.header-actions { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+.header-cta { white-space: nowrap; }
+.header-cta b { font-weight: 800; }
+
+.nav-burger { display: none; position: relative; }
+.nav-burger > summary {
+  width: 40px; height: 40px; display: grid; place-items: center; align-content: center; gap: 4px;
+  border-radius: 50%; border: 1px solid rgba(23,25,24,.16); cursor: pointer; list-style: none;
+}
+.nav-burger > summary::-webkit-details-marker { display: none; }
+.nav-burger > summary span { display: block; width: 16px; height: 2px; border-radius: 2px; background: var(--ink); }
+.nav-burger[open] > summary { background: var(--ink); }
+.nav-burger[open] > summary span { background: #fff; }
+.burger-panel {
+  position: fixed; inset: var(--header-h) 0 auto 0; max-height: calc(100dvh - var(--header-h));
+  overflow: auto; padding: 22px; display: grid; gap: 18px; justify-items: stretch;
+  background: #fff; border-bottom: 1px solid var(--line); box-shadow: 0 30px 60px rgba(18,16,28,.18);
+}
+.burger-links { display: grid; }
+.burger-links a {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 2px; border-top: 1px solid var(--line);
+  font-size: 15px; font-weight: 800; color: var(--ink); text-decoration: none;
+}
+.burger-links i { font-style: normal; color: #9a9d96; }
+.burger-panel .lang-switch { justify-self: start; }
+.burger-panel .primary-button { justify-content: space-between; }
+
+@media (max-width: 1024px) {
+  .main-nav { display: none; }
+  .nav-burger { display: block; }
+  .header-inner { gap: 14px; }
+}
+@media (max-width: 560px) {
+  .header-cta { padding: 6px; border-radius: 50%; }
+  .header-cta b { display: none; }
+  .header-actions { gap: 8px; }
+  .lang-switch a, .lang-switch span { min-width: 24px; padding: 4px 5px; font-size: 9px; }
+}
+
+/* ============================================================
+   Подвал: три колонки, CTA в бренд-блоке, на мобиле — две колонки
+   ============================================================ */
+.site-footer { margin-top: 24px; padding: 64px 0 22px; background: #0d0f0c; color: #fff; }
+.footer-top { display: grid; grid-template-columns: 1.5fr .9fr 1fr; gap: 48px; align-items: start; }
+.footer-brand { display: grid; gap: 20px; justify-items: start; }
+.footer-brand p { margin: 0; max-width: 340px; color: #9aa093; font-size: 13px; line-height: 1.6; }
+.site-footer .primary-button { background: #fff; color: #14170f; }
+.site-footer .primary-button span { background: #14170f; color: #fff; }
+
+.footer-col { display: grid; gap: 11px; align-content: start; }
+.footer-col b { margin-bottom: 3px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #7d8279; }
+.footer-col a { font-size: 13px; color: #cdd2c9; text-decoration: none; line-height: 1.2; }
+.footer-col a:hover { color: #fff; }
+
+.footer-bottom {
+  margin-top: 52px; padding-top: 18px; display: flex; flex-wrap: wrap;
+  align-items: center; justify-content: space-between; gap: 12px 24px;
+  border-top: 1px solid #262a22; color: #767b71; font-size: 10px;
+  text-transform: uppercase; letter-spacing: .08em;
+}
+.footer-bottom p { margin: 0; flex: 1 1 340px; text-align: center; }
+
+@media (max-width: 900px) {
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 34px 24px; }
+  .footer-brand { grid-column: 1 / -1; }
+  .footer-brand .primary-button { justify-content: space-between; }
+  .footer-bottom p { flex-basis: 100%; text-align: left; order: 3; }
+}
+@media (max-width: 560px) {
+  .site-footer { padding: 46px 0 18px; }
+  .footer-top { gap: 28px 18px; }
+  .footer-col a { font-size: 12.5px; }
+  .footer-bottom { margin-top: 34px; }
+}
+
+/* Хлебные крошки: переносим, а не обрезаем */
+.breadcrumbs { flex-wrap: wrap; row-gap: 6px; }
+.breadcrumbs b { max-width: 100%; white-space: normal; overflow: visible; text-overflow: clip; }
+
+/* Закрытые панели меню не должны попадать в разметку/отрисовку */
+.nav-burger:not([open]) .burger-panel,
+.nav-more:not([open]) .nav-more-panel { display: none; }
+.burger-panel, .nav-more-panel { will-change: transform; }
+
+/* Кнопка в шапке: на планшете текст остаётся читаемым, на телефоне — только иконка */
+.header-cta { font-size: 12px; }
+@media (max-width: 640px) {
+  .breadcrumbs > span { display: none; }
+  .breadcrumbs a { white-space: nowrap; }
+}
