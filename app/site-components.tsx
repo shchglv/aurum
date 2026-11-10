@@ -1,14 +1,31 @@
 const WALLET_URL = "https://vk.cc/d0ovkk";
 
+export const LANGUAGES = [
+  { code: "ru", label: "RU", title: "Русский", href: "/" },
+  { code: "uz", label: "UZ", title: "O‘zbekcha", href: "/uz" },
+  { code: "ky", label: "KY", title: "Кыргызча", href: "/ky" },
+  { code: "tg", label: "TJ", title: "Тоҷикӣ", href: "/tg" },
+] as const;
+
 export function PrimaryButton({ label = "Открыть кошелёк" }: { label?: string }) {
   return <a className="primary-button" href={WALLET_URL} target="_blank" rel="noreferrer">{label}<span>↗</span></a>;
+}
+
+export function LanguageSwitcher({ current = "ru" }: { current?: string }) {
+  return (
+    <div className="lang-switch" role="group" aria-label="Язык сайта">
+      {LANGUAGES.map((lang) => lang.code === current
+        ? <span key={lang.code} aria-current="true" title={lang.title}>{lang.label}</span>
+        : <a key={lang.code} href={lang.href} hrefLang={lang.code} title={lang.title}>{lang.label}</a>)}
+    </div>
+  );
 }
 
 export function Header() {
   return <header className="site-header"><div className="section-shell header-inner">
     <a className="brand" href="/" aria-label="AURUM — главная"><img className="brand-mark" src="/source/aurum-logo.svg" alt="" /><span>AURUM<small>WALLET</small></span></a>
     <nav aria-label="Главная навигация"><a href="/#features">Возможности</a><a href="/usdt">USDT</a><a href="/p2p">P2P → AURUM</a><a href="/perevody">Переводы</a><a href="/birzhi">Криптобиржи</a><a href="/virtual-card">Виртуальная карта</a><a href="/servisy">Сервисы</a><a href="/#license">Лицензия</a><a href="/faq">FAQ</a></nav>
-    <a className="header-cta" href={WALLET_URL} target="_blank" rel="noreferrer">Открыть кошелёк <span>↗</span></a>
+    <div className="header-actions"><LanguageSwitcher current="ru" /><a className="header-cta" href={WALLET_URL} target="_blank" rel="noreferrer">Открыть кошелёк <span>↗</span></a></div>
   </div></header>;
 }
 

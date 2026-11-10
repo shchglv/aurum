@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Footer, PrimaryButton } from "./site-components";
+import { Footer, LanguageSwitcher, PrimaryButton } from "./site-components";
 import { getLocaleCopy, getLocalizedPage, localizedLocales, localizedPages, type LocalizedLocale } from "./localized-pages";
 import { SITE_URL } from "./site-config";
 
@@ -22,8 +22,7 @@ function LocalizedHeader({ locale }: { locale: LocalizedLocale }) {
   const copy = getLocaleCopy(locale);
   return <header className="site-header"><div className="section-shell header-inner">
     <a className="brand" href={`/${locale}`} aria-label="AURUM"><img className="brand-mark" src="/source/aurum-logo.svg" alt="" /><span>AURUM<small>WALLET</small></span></a>
-    <nav aria-label="Language navigation"><a href={`/${locale}`}>{copy.home}</a><a href="/kripto">RU</a>{localizedLocales.filter((item) => item !== locale).map((item) => <a key={item} href={`/${item}`}>{getLocaleCopy(item).label}</a>)}</nav>
-    <a className="header-cta" href="https://vk.cc/d0ovkk" target="_blank" rel="noreferrer">{copy.open} <span>↗</span></a>
+    <div className="header-actions"><LanguageSwitcher current={locale} /><a className="header-cta" href="https://vk.cc/d0ovkk" target="_blank" rel="noreferrer">{copy.open} <span>↗</span></a></div>
   </div></header>;
 }
 
