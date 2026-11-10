@@ -1,5 +1,7 @@
 const WALLET_URL = "https://vk.cc/d0ovkk";
 
+import type { LocaleUi } from "./localized-ui";
+
 export const LANGUAGES = [
   { code: "ru", label: "RU", title: "Русский", href: "/" },
   { code: "uz", label: "UZ", title: "O‘zbekcha", href: "/uz" },
@@ -21,16 +23,22 @@ export function LanguageSwitcher({ current = "ru" }: { current?: string }) {
   );
 }
 
-export function Header() {
+export function Header({ current = "ru", home = "/" }: { current?: string; home?: string }) {
   return <header className="site-header"><div className="section-shell header-inner">
-    <a className="brand" href="/" aria-label="AURUM — главная"><img className="brand-mark" src="/source/aurum-logo.svg" alt="" /><span>AURUM<small>WALLET</small></span></a>
+    <a className="brand" href={home} aria-label="AURUM — главная"><img className="brand-mark" src="/source/aurum-logo.svg" alt="" /><span>AURUM<small>WALLET</small></span></a>
     <nav aria-label="Главная навигация"><a href="/#features">Возможности</a><a href="/usdt">USDT</a><a href="/p2p">P2P → AURUM</a><a href="/perevody">Переводы</a><a href="/birzhi">Криптобиржи</a><a href="/virtual-card">Виртуальная карта</a><a href="/servisy">Сервисы</a><a href="/#license">Лицензия</a><a href="/faq">FAQ</a></nav>
-    <div className="header-actions"><LanguageSwitcher current="ru" /><a className="header-cta" href={WALLET_URL} target="_blank" rel="noreferrer">Открыть кошелёк <span>↗</span></a></div>
+    <div className="header-actions"><LanguageSwitcher current={current} /><a className="header-cta" href={WALLET_URL} target="_blank" rel="noreferrer">Открыть кошелёк <span>↗</span></a></div>
   </div></header>;
 }
 
-export function Footer() {
-  return <footer className="site-footer"><div className="section-shell footer-top"><div><a className="brand brand-light" href="/"><img className="brand-mark" src="/source/aurum-logo.svg" alt="" /><span>AURUM<small>WALLET</small></span></a><p>Рубли, USDT и виртуальные карты<br />в одном лицензированном сервисе.</p></div><div><b>Продукты</b><a href="/usdt">Купить USDT</a><a href="/p2p">P2P и альтернативы</a><a href="/perevody">Переводы за границу</a><a href="/virtual-card">Виртуальная карта</a><a href="/foreign-card">Зарубежная карта</a><a href="/crypto-card">Криптокарта</a></div><div><b>Информация</b><a href="/servisy">Оплата сервисов</a><a href="/what-is-usdt">Что такое USDT</a><a href="/how-to-use-virtual-card">Как пользоваться картой</a><a href="/faq">Вопросы и ответы</a><a href="mailto:info@aurum.ws">info@aurum.ws</a></div><div className="footer-action"><span>Готовы начать?</span><PrimaryButton /></div></div><div className="section-shell footer-bottom"><span>© AURUM, 2026</span><p>Информация на сайте не является индивидуальной инвестиционной рекомендацией.</p><span>RU</span></div></footer>;
+const FOOTER_PRODUCTS: [string, string][] = [
+  ["Купить USDT", "/usdt"], ["P2P и альтернативы", "/p2p"], ["Переводы за границу", "/perevody"],
+  ["Виртуальная карта", "/virtual-card"], ["Зарубежная карта", "/foreign-card"], ["Криптокарта", "/crypto-card"],
+];
+
+export function Footer({ ui, code = "RU", home = "/", products }: { ui?: LocaleUi; code?: string; home?: string; products?: [string, string][] } = {}) {
+  const productLinks = products ?? FOOTER_PRODUCTS;
+  return <footer className="site-footer"><div className="section-shell footer-top"><div><a className="brand brand-light" href={home}><img className="brand-mark" src="/source/aurum-logo.svg" alt="" /><span>AURUM<small>WALLET</small></span></a><p>{ui ? ui.footerNote : <>Рубли, USDT и виртуальные карты<br />в одном лицензированном сервисе.</>}</p></div><div><b>{ui?.footerProducts ?? "Продукты"}</b>{productLinks.map(([label, href]) => <a href={href} key={href}>{label}</a>)}</div><div><b>{ui?.footerInfo ?? "Информация"}</b><a href="/servisy">Оплата сервисов</a><a href="/what-is-usdt">Что такое USDT</a><a href="/how-to-use-virtual-card">Как пользоваться картой</a><a href="/faq">Вопросы и ответы</a><a href="mailto:info@aurum.ws">info@aurum.ws</a></div><div className="footer-action"><span>{ui?.footerReady ?? "Готовы начать?"}</span><PrimaryButton /></div></div><div className="section-shell footer-bottom"><span>© AURUM, 2026</span><p>{ui?.disclaimer ?? "Информация на сайте не является индивидуальной инвестиционной рекомендацией."}</p><span>{code}</span></div></footer>;
 }
 
 export function PopularPages() {

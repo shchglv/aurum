@@ -308,7 +308,7 @@ body { background: var(--paper); color: var(--ink); }
 .lang-switch [aria-current="true"] { background: var(--ink); color: #fff; }
 
 /* крупные заголовки: отрицательный трекинг «съедал» пробел после запятой */
-.hero h1, .section-heading h2, .how h2, .license h2, .faq-title h2, .final-cta h2, .seo-hero h1 { word-spacing: .09em; }
+h1, h2, h3 { word-spacing: .07em; }
 
 @media (max-width: 900px) {
   .header-actions { gap: 9px; }
